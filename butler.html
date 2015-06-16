@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Dice Butler</h1>
+<p>Butles your dice</p>
+
+<script>
+function roller(pips, iterations) {
+    for (i = 1; i <= iterations;  i++) {
+        result = Math.floor(Math.random() * (pips)) + 1;
+    }
+
+    return result
+}
+
+total = 0
+
+for (j = 1; j <= 10; j++) {
+    testrun = roller(6, 1)
+    document.write("D6 test run: " + testrun + "<br>")
+    total = total + testrun
+} 
+
+document.write("<br> D6 total: " + total)
+
+
+
+</script>
+
+</body>
+</html>

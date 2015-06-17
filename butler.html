@@ -5,27 +5,39 @@
 <h1>Dice Butler</h1>
 <p>Butles your dice</p>
 
-<script>
-function roller(pips, iterations) {
-    for (i = 1; i <= iterations;  i++) {
-        result = Math.floor(Math.random() * (pips)) + 1;
-    }
+<p id="input"
+<form>
+Dice Pips: <input type="text" id="pips" name="DicePips" value="6"><br>
+Iterations: <input type="text" id="iter" name="Iterations" value="1"><br>
+</form>
+</p>
 
+<button onclick="rollcall()"> Roll Test </button>
+
+
+<p id= "output"></p>
+
+<script>
+<!--
+
+function roller(pips) {
+    result = Math.floor(Math.random() * (pips)) + 1;
     return result
 }
 
-total = 0
+function rollcall() { 
+    pips = document.getElementById("pips").value;
+    iterations = document.getElementById("iter").value;
+    total = 0
+    for (i = 1; i <= iterations; i++) {
+        x = roller(pips)
+        output.innerHTML += ("1" + "D" + pips + ": " + x + "<br>")
+        total += x
+    }
+    output.innerHTML += "<br> Total: " + total + "<br> <br> <br>"
+}
 
-for (j = 1; j <= 10; j++) {
-    testrun = roller(6, 1)
-    document.write("D6 test run: " + testrun + "<br>")
-    total = total + testrun
-} 
-
-document.write("<br> D6 total: " + total)
-
-
-
+//-->
 </script>
 
 </body>

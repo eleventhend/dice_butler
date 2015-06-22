@@ -87,6 +87,9 @@ function attack() {
         y += Number(chr);
     }
     output.innerHTML = ("Attack Roll: " + y + "<br>") + output.innerHTML;
+    if (document.getElementById("smite").checked == true) {
+        output.innerHTML = "&#9841 Smite! <br>" + output.innerHTML
+    }
 }
 
 //-->

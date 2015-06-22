@@ -1,9 +1,30 @@
 <!DOCTYPE html>
-<html>
-<body>
+<!--
+Copyright (C) 2015 Jeff Ferguson <jferguson51 AT gmail DOT com>
 
-<h1>Dice Butler</h1>
-<p>Butles your dice</p>
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, see <http://www.gnu.org/licenses/>.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title> Dice Butler a0.3 </title>
+<meta name="description" content="Automatic Dice Roller for Pathfinder" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1>&#9860 Dice Butler &#9876</h1>
+<h2>Buttles your dice</h2>
 
 <!--
     Basic dice roller form. Outputs a given number of rolls and their totals.
@@ -13,7 +34,7 @@
 Dice Pips: <input type="number" id="pips" name="DicePips" value="6"> &#9861 <br>
 Iterations: <input type="number" id="iter" name="Iterations" value="1"> <br>
 </form>
-<button type="submit" style="height:30px; width:60px" onclick="rollcall()"> Roll </button>
+<button type="submit" style="height:30px; width:60px; font-size: 100%" onclick="rollcall()"> Roll </button>
 </p>
 
 <!--
@@ -33,7 +54,7 @@ Smite <input type="checkbox" id="smite" name="Smite"> &#9841<br>
 Charisma Mod: <input type="number" id="chr" name="Iterations"> <br>
 Paladin Level: <input type="number" id="pallvl" name="Iterations"> <br>
 </form>
-<button type="submit" style="height:40px; width:200px" onclick="attack()"> &#9876 Attack! &#9876 </button>
+<button type="submit" style="height:40px; width:200px; font-size: 100%" onclick="attack()"> &#9876 Attack! &#9876 </button>
 </p>
 
 <p id= "output"></p>
@@ -62,15 +83,23 @@ function rollcall() {
 
 //Outputs a single attack and damage roll based on inputs from the "attack" form
 function attack() {
+    //Add a line break for visual clarity
     output.innerHTML = "<br>" + output.innerHTML
+
+    //Get input values from the attack form
     pips = document.getElementById("a_pips").value;
     iterations = document.getElementById("a_iter").value;
     bab = document.getElementById("bab").value;
     str = document.getElementById("str").value;
     chr = document.getElementById("chr").value;
     pallvl = document.getElementById("pallvl").value;
+    
+    //Initialize damage and other variables as 0
     damage = 0;
     smitedmg = 0;
+
+    //Make damage rolls, ouput each roll and then total damage
+    //This is done before the attack roll for the sake of visual clarity. Because everything appends from the top, this will make the damage roll appear after the attack roll on the webpage.
     for (i = 1; i <= iterations; i++) {
         x = roller(pips);
         output.innerHTML = ("1" + "D" + pips + ": " + x + "<br>") + output.innerHTML;
@@ -80,8 +109,18 @@ function attack() {
         }
     }
     output.innerHTML = "Damage: " + damage + "<br>" + output.innerHTML;
+    
+    //Make the attack roll
     y = roller(20);
-    output.innerHTML = ("1" + "D20: " + y + "<br>") + output.innerHTML;
+
+    //If a natural 20 is rolled, print a little shamrock for visibility
+    if (y == 20) {
+        output.innerHTML = ("1" + "D20: " + y + " &#9752" + "<br>") + output.innerHTML;
+    } else {
+        output.innerHTML = ("1" + "D20: " + y + "<br>") + output.innerHTML;
+    }
+
+    //Add appropriate modifiers and output out the result of the attack roll.
     y += Number(bab) + Number(str);
     if (document.getElementById("smite").checked == true) {
         y += Number(chr);

@@ -5,14 +5,27 @@
 <h1>Dice Butler</h1>
 <p>Butles your dice</p>
 
-<p id="input"
+<p id="basicroll"
 <form class="diceroller">
-Dice Pips: <input type="text" id="pips" name="DicePips" value="6"><br>
-Iterations: <input type="text" id="iter" name="Iterations" value="1"><br>
+Dice Pips: <input type="text" id="pips" name="DicePips" value="6"> &#9861 <br>
+Iterations: <input type="text" id="iter" name="Iterations" value="1"> <br>
 </form>
+<button type="submit" onclick="rollcall()"> Roll </button>
 </p>
 
-<button type="submit" onclick="rollcall()"> Roll Test </button>
+<p id="attack"
+<form class="attacker">
+Dice Pips: <input type="text" id="a_pips" name="DicePips" value="6"> &#9861 <br>
+Iterations: <input type="text" id="a_iter" name="Iterations" value="1"> <br>
+Base Attack Bonus: <input type="text" id="bab" name="Iterations" value=""> <br>
+Strength Mod: <input type="text" id="str" name="Iterations" value=""> <br>
+Dexterity Mod: <input type="text" id="dex" name="Iterations" value=""> <br>
+Charisma Mod: <input type="text" id="char" name="Iterations" value=""> <br>
+Smite <input type="checkbox" id="smite" name="Smite" value=""> &#9841<br>
+</form>
+<button type="submit" onclick="attack()"> Roll </button>
+</p>
+
 
 <p id= "output"></p>
 
@@ -27,13 +40,29 @@ function roller(pips) {
 function rollcall() { 
     pips = document.getElementById("pips").value;
     iterations = document.getElementById("iter").value;
-    total = 0
+    total = 0;
     for (i = 1; i <= iterations; i++) {
-        x = roller(pips)
-        output.innerHTML = ("1" + "D" + pips + ": " + x + "<br>") + output.innerHTML
-        total += x
+        x = roller(pips);
+        output.innerHTML = ("1" + "D" + pips + ": " + x + "<br>") + output.innerHTML;
+        total += x;
     }
-    output.innerHTML = "<br> Total: " + total + "<br>" + output.innerHTML
+    output.innerHTML = "<br> Total: " + total + "<br>" + output.innerHTML;
+}
+
+function attack() {
+    pips = document.getElementById("a_pips").value;
+    iterations = document.getElementById("a_iter").value;
+    smite = document.getElementById("smite").value;
+    total = 0;
+    for (i = 1; i <= iterations; i++) {
+        x = roller(pips);
+        output.innerHTML = ("1" + "D" + pips + ": " + x + "<br>") + output.innerHTML;
+        total += x;
+    }
+    if (document.getElementById("smite").checked == true) {
+        output.innerHTML = "YEP <br>" + output.innerHTML
+    }
+    output.innerHTML = "<br> Total: " + total + "<br>" + output.innerHTML;
 }
 
 //-->

@@ -5,6 +5,9 @@
 <h1>Dice Butler</h1>
 <p>Butles your dice</p>
 
+<!--
+    Basic dice roller form. Outputs a given number of rolls and their totals.
+-->
 <p id="basicroll"
 <form class="diceroller">
 Dice Pips: <input type="number" id="pips" name="DicePips" value="6"> &#9861 <br>
@@ -12,6 +15,11 @@ Iterations: <input type="number" id="iter" name="Iterations" value="1"> <br>
 </form>
 <button type="submit" style="height:30px; width:60px" onclick="rollcall()"> Roll </button>
 </p>
+
+<!--
+    Basic attack roller form. Outputs a D20 based attack and custom damage roll
+        based on inputs taken from the form.
+-->
 
 <p id="attack"
 <form class="attacker">
@@ -33,11 +41,13 @@ Paladin Level: <input type="number" id="pallvl" name="Iterations"> <br>
 <script>
 <!--
 
+//Returns a pseudorandom integer between 1 and the given number of dice pips 
 function roller(pips) {
     result = Math.floor(Math.random() * (pips)) + 1;
     return result
 }
 
+//Outputs individual dice rolls for a given number of iterations and dice pips
 function rollcall() { 
     pips = document.getElementById("pips").value;
     iterations = document.getElementById("iter").value;
@@ -50,6 +60,7 @@ function rollcall() {
     output.innerHTML = "<br> Total: " + total + "<br>" + output.innerHTML;
 }
 
+//Outputs a single attack and damage roll based on inputs from the "attack" form
 function attack() {
     output.innerHTML = "<br>" + output.innerHTML
     pips = document.getElementById("a_pips").value;

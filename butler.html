@@ -17,119 +17,55 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title> Dice Butler a0.3 </title>
-<meta name="description" content="Automatic Dice Roller for Pathfinder" />
-<link href="default.css" rel="stylesheet" type="text/css" />
+    <title> Dice Butler a0.3 </title>
+    <meta name="description" content="Automatic Dice Roller for Pathfinder" />
+    <script type="text/javascript" language="JavaScript" src="butler.js"></script>
+    <link href="butler.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<h1>&#9860 Dice Butler &#9876</h1>
+<h1>&#9860; Dice Butler &#9876;</h1>
 <h2>Buttles your dice</h2>
 
 <!--
     Basic dice roller form. Outputs a given number of rolls and their totals.
 -->
-<p id="basicroll"
-<form class="diceroller">
-Dice Pips: <input type="number" id="pips" name="DicePips" value="6"> &#9861 <br>
-Iterations: <input type="number" id="iter" name="Iterations" value="1"> <br>
-</form>
-<button type="submit" style="height:30px; width:60px; font-size: 100%" onclick="rollcall()"> Roll </button>
-</p>
+<div id="wrap">
+    <div id="rollform">
+        <form class="diceroller">
+        Dice Pips: <input type="number" id="pips" name="DicePips" value="20"> &#9861; <br>
+        Iterations: <input type="number" id="iter" name="Iterations" value="1"> &#8635; <br>
+        Modifier: <input type="number" id="mod" name="Modifier" value="0"> &#177; <br>
+        </form>
+        <button type="submit" style="height:30px; width:60px; font-size: 100%" onclick="rollcall()"> Roll </button>
+    </div>
+    <!--
+        Basic attack roller form. Outputs a D20 based attack and custom damage roll
+            based on inputs taken from the form.
+    -->
+    <div id="attackform">
+        <form class="attacker">
+        Damage Dice: <input type="number" id="a_pips" name="DicePips" value="6"> <br>
+        # of Dice: <input type="number" id="a_iter" name="DicePips" value="1"> <br>
+        <!--Number of Attacks: <input type="text" id="a_iter" name="Iterations" value="1"> <br>-->
+        Base Attack Bonus: <input type="number" id="bab" name="Iterations"> <br>
+        Strength Mod: <input type="number" id="str" name="Iterations"> <br>
+        <!--Dexterity Mod: <input type="text" id="dex" name="Iterations" value=""> <br>-->
+        Smite <input type="checkbox" id="smite" name="Smite"> <br>
+        Charisma Mod: <input type="number" id="chr" name="Iterations"> <br>
+        Paladin Level: <input type="number" id="pallvl" name="Iterations"> <br>
+        </form>
+        <button type="submit" style="height:40px; width:200px; font-size: 100%" onclick="attack()"> &#9876; Attack! &#9876; </button>
+    </div>
+</div>
 
-<!--
-    Basic attack roller form. Outputs a D20 based attack and custom damage roll
-        based on inputs taken from the form.
--->
-
-<p id="attack"
-<form class="attacker">
-Damage Pips: <input type="number" id="a_pips" name="DicePips" value="6"> &#9861 <br>
-Damage Die #: <input type="number" id="a_iter" name="DicePips" value="1"> <br>
-<!--Number of Attacks: <input type="text" id="a_iter" name="Iterations" value="1"> <br>-->
-Base Attack Bonus: <input type="number" id="bab" name="Iterations"> <br>
-Attack/Damage Mod: <input type="number" id="str" name="Iterations"> <br>
-<!--Dexterity Mod: <input type="text" id="dex" name="Iterations" value=""> <br>-->
-Smite <input type="checkbox" id="smite" name="Smite"> &#9841<br>
-Charisma Mod: <input type="number" id="chr" name="Iterations"> <br>
-Paladin Level: <input type="number" id="pallvl" name="Iterations"> <br>
-</form>
-<button type="submit" style="height:40px; width:200px; font-size: 100%" onclick="attack()"> &#9876 Attack! &#9876 </button>
-</p>
-
-<p id= "output"></p>
+<p id="output" class="output"></p>
 
 <script>
 <!--
 
 //Returns a pseudorandom integer between 1 and the given number of dice pips 
-function roller(pips) {
-    result = Math.floor(Math.random() * (pips)) + 1;
-    return result
-}
 
-//Outputs individual dice rolls for a given number of iterations and dice pips
-function rollcall() { 
-    pips = document.getElementById("pips").value;
-    iterations = document.getElementById("iter").value;
-    total = 0;
-    for (i = 1; i <= iterations; i++) {
-        x = roller(pips);
-        output.innerHTML = ("1" + "D" + pips + ": " + x + "<br>") + output.innerHTML;
-        total += x;
-    }
-    output.innerHTML = "<br> Total: " + total + "<br>" + output.innerHTML;
-}
-
-//Outputs a single attack and damage roll based on inputs from the "attack" form
-function attack() {
-    //Add a line break for visual clarity
-    output.innerHTML = "<br>" + output.innerHTML
-
-    //Get input values from the attack form
-    pips = document.getElementById("a_pips").value;
-    iterations = document.getElementById("a_iter").value;
-    bab = document.getElementById("bab").value;
-    str = document.getElementById("str").value;
-    chr = document.getElementById("chr").value;
-    pallvl = document.getElementById("pallvl").value;
-    
-    //Initialize damage and other variables as 0
-    damage = 0;
-    smitedmg = 0;
-
-    //Make damage rolls, ouput each roll and then total damage
-    //This is done before the attack roll for the sake of visual clarity. Because everything appends from the top, this will make the damage roll appear after the attack roll on the webpage.
-    for (i = 1; i <= iterations; i++) {
-        x = roller(pips);
-        output.innerHTML = ("1" + "D" + pips + ": " + x + "<br>") + output.innerHTML;
-        damage += x;
-        if (document.getElementById("smite").checked == true) {
-            damage += Number(pallvl);
-        }
-    }
-    output.innerHTML = "Damage: " + damage + "<br>" + output.innerHTML;
-    
-    //Make the attack roll
-    y = roller(20);
-
-    //If a natural 20 is rolled, print a little shamrock for visibility
-    if (y == 20) {
-        output.innerHTML = ("1" + "D20: " + y + " &#9752" + "<br>") + output.innerHTML;
-    } else {
-        output.innerHTML = ("1" + "D20: " + y + "<br>") + output.innerHTML;
-    }
-
-    //Add appropriate modifiers and output out the result of the attack roll.
-    y += Number(bab) + Number(str);
-    if (document.getElementById("smite").checked == true) {
-        y += Number(chr);
-    }
-    output.innerHTML = ("Attack Roll: " + y + "<br>") + output.innerHTML;
-    if (document.getElementById("smite").checked == true) {
-        output.innerHTML = "&#9841 Smite! <br>" + output.innerHTML
-    }
-}
 
 //-->
 </script>

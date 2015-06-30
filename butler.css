@@ -21,7 +21,8 @@ body {
     margin-top: 1em;
     background: #F5F5F5;
     text-align: justify;
-    font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    /*font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;*/
+    /*font-family: Papyrus, fantasy;*/
     font-size: 16px;
     color: #000000;
 }
@@ -48,8 +49,9 @@ h3 {
 }
 
 /* paragraph styling */
-p {
-
+p.natural {
+    font-weight: bold;
+    /*text-shadow: 1px 1px #828282;*/
 }
 
 #wrap {
@@ -73,10 +75,6 @@ p {
     display:table;
     text-align:justify;
     background-color:;
-}
-
-#shamrock {
-    font-color: green;
 }
 
 

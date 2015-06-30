@@ -11,18 +11,16 @@ function rollcall() {
     roll_output = "";
     for (i = 1; i <= iterations; i++) {
         x = roller(pips);
-        roll_output = ("1" + "D" + pips + ": " + x + "<br>") + roll_output;
+        roll_output = ("1" + "D" + pips + ": " + x) + roll_output;
         total += x;
     }
-    roll_output = "<br> Total: " + total + "<br>" + roll_output;
+    roll_output = "Total: " + total + "<br>" + roll_output;
+    roll_output = "<p>" + roll_output + "</p>"
     output.innerHTML = roll_output + output.innerHTML
 }
 
 //Outputs a single attack and damage roll based on inputs from the "attack" form
 function attack() {
-    //Add a line break for visual clarity
-    output.innerHTML = "<br>" + output.innerHTML
-
     //Get input values from the attack form
     pips = document.getElementById("a_pips").value;
     iterations = document.getElementById("a_iter").value;
@@ -68,5 +66,12 @@ function attack() {
     if (document.getElementById("smite").checked == true) {
         attack_output = "&#9841 Smite! <br>" + attack_output
     }
+    //style on nat 20
+        if (y == 20) {
+        attack_output = '<p class="natural">' + attack_output + "</p>"
+    } else {
+        attack_output = "<p>" + attack_output + "</p>"
+    }
+
     output.innerHTML = attack_output + output.innerHTML
 }

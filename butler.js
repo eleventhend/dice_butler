@@ -66,13 +66,15 @@ function attack(bab) {
     //This is done before the attack roll for the sake of visual clarity. Because everything appends from the top, this will make the damage roll appear after the attack roll on the webpage.
     for (i = 1; i <= iterations; i++) {
         x = roller(pips);
-        attack_output = ("1" + "D" + pips + ": " + x + "<br>") + attack_output;
+        attack_output = ("<tr> <td>" + "1" + "D" + pips + ": " + x + "</td> </tr>") + attack_output;
         damage += x;
         if (document.getElementById("smite").checked == true) {
             damage += Number(pallvl);
         }
     }
-    attack_output = "Damage: " + damage + "<br>" + attack_output;
+    //attack_output = "<tr>" + attack_output
+
+    attack_output = '<tr> <td rowspan="' + iterations+1 + '">' + "Damage: " + damage + "</td></tr>" + attack_output;
     
     //Make the attack roll
     y = roller(20);
@@ -80,9 +82,9 @@ function attack(bab) {
 
     //If a natural 20 is rolled, print a little shamrock for visibility
     if (y == 20) {
-        attack_output = ("1" + "D20: " + y + " &#9752" + "<br>") + attack_output;
+        attack_output = ("<td>" + "1" + "D20: " + y + " &#9752" + "</td> </tr>") + attack_output;
     } else {
-        attack_output = ("1" + "D20: " + y + "<br>") + attack_output;
+        attack_output = ("<td>" + "1" + "D20: " + y + "</td> </tr>") + attack_output;
     }
 
     //Add appropriate modifiers and output out the result of the attack roll.
@@ -90,16 +92,16 @@ function attack(bab) {
     if (document.getElementById("smite").checked == true) {
         y += Number(chr);
     }
-    attack_output = ("Attack Roll: " + y + "<br>") + attack_output;
+    attack_output = ("<tr> <td>" + "Attack Roll: " + y + "</td>") + attack_output;
     if (document.getElementById("smite").checked == true) {
-        attack_output = "&#9841 Smite! <br>" + attack_output
+        attack_output = "<tr> <td> &#9841 Smite! </td> </tr>" + attack_output;
     }
 
     //style on nat 20
     if (natroll == 20) {
-        attack_output = '<p class="natural">' + attack_output + "</p>"
+        attack_output = '<table class="natural">' + attack_output + "</table>";
     } else {
-        attack_output = '<p>' + attack_output + "</p>"
+        attack_output = '<table class="attack">' + attack_output + "</table>";
     }
 
     return attack_output

@@ -20,15 +20,42 @@ function rollcall() {
 }
 
 //Outputs a single attack and damage roll based on inputs from the "attack" form
-function attack() {
+function fullattack() {
     //Get input values from the attack form
     pips = document.getElementById("a_pips").value;
     iterations = document.getElementById("a_iter").value;
-    bab = document.getElementById("bab").value;
+    bab1 = document.getElementById("bab1").value;
+    bab2 = document.getElementById("bab2").value;
+    bab3 = document.getElementById("bab3").value;
+    bab4 = document.getElementById("bab4").value;
     str = document.getElementById("str").value;
     chr = document.getElementById("chr").value;
     pallvl = document.getElementById("pallvl").value;
-    
+
+    if (bab1 != 0) {
+        a1 = attack(bab1);
+        a_out = a1
+    }
+
+    if (bab2 != 0) {
+        a2 = attack(bab2);
+        a_out += a2;
+    }
+
+    if (bab3 != 0) {
+        a3 = attack(bab3);
+        a_out += a3;
+    }
+
+    if (bab4 != 0) {
+        a4 = attack(bab4);
+        a_out += a4;
+    }
+
+    output.innerHTML = '<div class="attack">' + a_out + "</div>" + "<br>" + output.innerHTML
+}
+
+function attack(bab) {
     //Initialize damage and other variables as 0
     //Initialize the output text as empty
     damage = 0;
@@ -49,6 +76,7 @@ function attack() {
     
     //Make the attack roll
     y = roller(20);
+    natroll = y;
 
     //If a natural 20 is rolled, print a little shamrock for visibility
     if (y == 20) {
@@ -66,12 +94,13 @@ function attack() {
     if (document.getElementById("smite").checked == true) {
         attack_output = "&#9841 Smite! <br>" + attack_output
     }
+
     //style on nat 20
-        if (y == 20) {
+    if (natroll == 20) {
         attack_output = '<p class="natural">' + attack_output + "</p>"
     } else {
-        attack_output = "<p>" + attack_output + "</p>"
+        attack_output = '<p>' + attack_output + "</p>"
     }
 
-    output.innerHTML = attack_output + output.innerHTML
+    return attack_output
 }

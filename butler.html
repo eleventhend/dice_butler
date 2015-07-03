@@ -46,20 +46,20 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
     <div id="attackform">
         <form class="attacker">
         Damage Dice: <input type="number" id="a_pips" name="DicePips" value="6"> <br>
-        # of Dice: <input type="number" id="a_iter" name="DicePips" value="1"> <br>
+        # of Dice: <input type="number" id="a_iter" name="DiceNum" value="1"> <br>
         <!--Number of Attacks: <input type="text" id="a_iter" name="Iterations" value="1"> <br>-->
-        Base Attack Bonus: <input type="number" id="bab" name="Iterations"> <br>
+        Base Attack Bonus: <input type="number" min="0" max="9" id="bab1" name="Iterations"> <input type="number" min="0" max="9" id="bab2" name="Iterations"> <input type="number" min="0" max="9" id="bab3" name="Iterations"> <input type="number" min="0" max="9" id="bab4" name="Iterations"> <br>
         Strength Mod: <input type="number" id="str" name="Iterations"> <br>
         <!--Dexterity Mod: <input type="text" id="dex" name="Iterations" value=""> <br>-->
         Smite <input type="checkbox" id="smite" name="Smite"> <br>
         Charisma Mod: <input type="number" id="chr" name="Iterations"> <br>
         Paladin Level: <input type="number" id="pallvl" name="Iterations"> <br>
         </form>
-        <button type="submit" style="height:40px; width:200px; font-size: 100%" onclick="attack()"> &#9876; Attack! &#9876; </button>
+        <button type="submit" style="height:40px; width:200px; font-size: 100%" onclick="fullattack()"> &#9876; Attack! &#9876; </button>
     </div>
 </div>
 
-<p id="output" class="output"></p>
+<div id="output" class="output"></div>
 
 </body>
 </html>

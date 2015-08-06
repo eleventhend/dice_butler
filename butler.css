@@ -21,9 +21,11 @@ body {
     margin-top: 1em;
     background: #F5F5F5;
     text-align: justify;
-    font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    /*font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;*/
+    /*font-family: Papyrus, fantasy;*/
     font-size: 16px;
     color: #000000;
+    width: 100%;
 }
 
 h1, h2, h3 {
@@ -47,9 +49,42 @@ h3 {
 
 }
 
-/* paragraph styling */
-p {
+/* div styling */
+div.output{
+    text-align:justify;
+    background-color: inherit;
+}
 
+div.attack {
+    text-align: left;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+/* table styling */
+table.natural {
+    font-weight: bold;
+    font-variant: small-caps;
+    width: 100%;
+}
+
+table.fail {
+    font-weight: bold;
+    font-style: oblique;
+    width: 100%;
+}
+
+table.attack {
+    width: 100%;
+}
+
+td {
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 #wrap {
@@ -73,10 +108,6 @@ p {
     display:table;
     text-align:justify;
     background-color:;
-}
-
-#shamrock {
-    font-color: green;
 }
 
 

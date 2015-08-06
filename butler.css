@@ -25,6 +25,7 @@ body {
     /*font-family: Papyrus, fantasy;*/
     font-size: 16px;
     color: #000000;
+    width: 100%;
 }
 
 h1, h2, h3 {
@@ -58,8 +59,8 @@ div.attack {
     text-align: left;
     border-style: solid;
     border-width: 1px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
 }
@@ -67,13 +68,23 @@ div.attack {
 /* table styling */
 table.natural {
     font-weight: bold;
-    border: 1px solid black;
+    font-variant: small-caps;
     width: 100%;
+}
 
+table.fail {
+    font-weight: bold;
+    font-style: oblique;
+    width: 100%;
 }
 
 table.attack {
     width: 100%;
+}
+
+td {
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 #wrap {

@@ -1,5 +1,4 @@
 /*
-
 Copyright (C) 2015 Jeff Ferguson <jferguson51 AT gmail DOT com>
 
 This program is free software; you can redistribute it and/or
@@ -14,7 +13,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
-
 */
 
 body {
@@ -50,9 +48,19 @@ h3 {
 }
 
 /* div styling */
+div.wrap{
+    width:100%;
+}
+
+div.rollform{
+    width:100%;
+}
+
+
 div.output{
     text-align:justify;
     background-color: inherit;
+    width: 30%;
 }
 
 div.attack {

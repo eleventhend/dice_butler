@@ -24,7 +24,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 </head>
 
 <body>
-<!---->
+
 <h1>&#9860; Dice Butler &#9876;</h1>
 <h2>Buttles your dice</h2>
 
@@ -39,12 +39,11 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
         Modifier: <input type="number" id="mod" name="Modifier" value="0"> &#177; <br>
         </form>
         <button type="submit" style="height:30px; width:60px; font-size: 100%" onclick="singleroll()"> Roll </button>
-    </div>
+        <p></p>
     <!--
         Basic attack roller form. Outputs a D20 based attack and custom damage roll
             based on inputs taken from the form.
     -->
-    <div id="attackform">
         <form class="attacker">
         Damage Dice: <input type="number" min="0" max="999" id="damage_pips" name="DicePips" value="6"> <br>
         # of Dice: <input type="number" min="0" max="999" id="damage_dice" name="DiceNum" value="1"> <br>
